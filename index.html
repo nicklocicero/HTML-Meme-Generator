@@ -1,0 +1,38 @@
+<html>
+<head>
+</head>
+<body>
+  <canvas id="c" height="400px" width="400px"></canvas>
+
+  <script>
+    c = document.querySelector("#c");
+    ctx = c.getContext("2d");
+
+    ctx.font = "36px Ubuntu";
+    ctx.textAlight = "center";
+
+    ctx.fillStyle = "white";
+    ctx.fillText("Hello Baller", c.width / 2, 50);
+
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 1;
+    ctx.strokeText("Hello baller", c.width / 2, 50);
+
+    // ctx.strokeRect(50, 50, 100, 100);
+    ctx.beginPath();
+    ctx.moveTo(75,75);
+    ctx.lineTo(125,75);
+    ctx.lineTo(125,125);
+    ctx.lineTo(75,75);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(50,50);
+    ctx.lineTo(150,50);
+    ctx.lineTo(150,150);
+    ctx.lineTo(50,150);
+    ctx.lineTo(50,50)
+    ctx.stroke();
+    </script>
+</body>
+</html>
