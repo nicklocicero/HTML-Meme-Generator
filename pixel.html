@@ -3,6 +3,7 @@
 </head>
 <body>
   <canvas id="c" height="500px" width="500px"></canvas>
+  <canvas id="d" height="500px" width="500px"></canvas>
   <script>
     c = document.querySelector("#c");
     ctx = c.getContext("2d");
@@ -16,10 +17,48 @@
           imageData.data[i * 4 + 1] = 255;
           imageData.data[i * 4 + 3] = 255;
         }
+        if (i % 10 === 3) {
+          imageData.data[i * 4 + 2] = 255;
+          imageData.data[i * 4 + 3] = 255;
+        }
+        if (i % 10 === 7) {
+          imageData.data[i * 4 + 0] = 255;
+          imageData.data[i * 4 + 3] = 255;
+        }
       }
       ctx.putImageData(imageData, 0, 0);
     }
     paintGreen(data);
+  </script>*/
+  <script>
+    d = document.querySelector("#d");
+    ctx = d.getContext("2d");
+
+
+    var image = new Image();
+
+    image.onload = function() {
+      ctx.drawImage(image, 0, 0);
+      grayscale();
+    }
+
+
+    image.src = "LA.jpg";
+
+    image.crossOrigin="anonymous";
+
+    function grayscale() {
+      var imageData = ctx.getImageData(0, 0, 500, 500)
+      var numPixels = imageData.data.length / 4;
+      for (var i = 0; i < numPixels; i++) {
+        var y = imageData.data[i * 4] * .3 + imageData.data[i * 4 + 1] * .59 + imageData.data[i * 4 + 2] * .11;
+        imageData.data[i * 4] = y;
+        imageData.data[i * 4 + 1] = y;
+        imageData.data[i * 4 + 2] = y;
+        imageData.data[i * 4 + 3] = 255;
+      }
+      ctx.putImageData(imageData, 0, 0);
+    }
   </script>
 </body>
 </html>
