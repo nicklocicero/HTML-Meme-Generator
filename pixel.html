@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+  <canvas id="c" height="500px" width="500px"></canvas>
+  <script>
+    c = document.querySelector("#c");
+    ctx = c.getContext("2d");
+
+    data = ctx.getImageData(0, 0, 500, 500);
+
+    function paintGreen(imageData) {
+      var numPixels = imageData.data.length / 4;
+      for (var i = 0; i < numPixels; i++) {
+        if (i % 10 === 0) {
+          imageData.data[i * 4 + 1] = 255;
+          imageData.data[i * 4 + 3] = 255;
+        }
+      }
+      ctx.putImageData(imageData, 0, 0);
+    }
+    paintGreen(data);
+  </script>
+</body>
+</html>
